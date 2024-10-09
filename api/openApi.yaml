@@ -1,0 +1,142 @@
+openapi: 3.0.0
+info:
+  title: API de Clientes
+  version: 1.0.0
+  description: API para gestionar clientes y aplicar filtros
+paths:
+  /clientes:
+    get:
+      summary: Obtener clientes por filtros
+      description: Obtiene una lista de clientes según los filtros proporcionados.
+      parameters:
+      - name: id_sucursal
+        in: query
+        description: ID de la sucursal
+        schema:
+          type: integer
+      - name: nombre_cliente
+        in: query
+        description: Nombre del cliente
+        schema:
+          type: string
+      - name: email_cliente
+        in: query
+        description: Email del cliente
+        schema:
+          type: string
+      - name: telefono_cliente
+        in: query
+        description: Teléfono del cliente
+        schema:
+          type: string
+      - name: fecha_desde
+        in: query
+        description: Fecha de registro desde (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: fecha_hasta
+        in: query
+        description: Fecha de registro hasta (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: rut_cliente
+        in: query
+        description: RUT del cliente
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Lista de clientes obtenida correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  detail:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id_sucursal:
+                          type: integer
+                        rut_cliente:
+                          type: string
+                        nombre_cliente:
+                          type: string
+                        email_cliente:
+                          type: string
+                        telefono_cliente:
+                          type: string
+                        fecha_registro:
+                          type: string
+                          format: date-time
+        '400':
+          description: Error en los filtros proporcionados
+        '404':
+          description: No se encontraron clientes
+    post:
+      summary: Crear un nuevo cliente
+      description: Registra un nuevo cliente en la base de datos.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_sucursal:
+                  type: integer
+                rut_cliente:
+                  type: string
+                nombre_cliente:
+                  type: string
+                email_cliente:
+                  type: string
+                telefono_cliente:
+                  type: string
+      responses:
+        '201':
+          description: Cliente creado correctamente
+        '400':
+          description: Error al crear el cliente
+
+  /clientes/{rut_cliente}:
+    put:
+      summary: Actualizar un cliente
+      description: Actualiza los datos de un cliente existente.
+      parameters:
+      - name: rut_cliente
+        in: path
+        required: true
+        description: RUT del cliente a actualizar
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id_sucursal:
+                  type: integer
+                nombre_cliente:
+                  type: string
+                email_cliente:
+                  type: string
+                telefono_cliente:
+                  type: string
+                fecha_registro:
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Cliente actualizado correctamente
+        '400':
+          description: No hay modificaciones, los datos son los mismos
+        '404':
+          description: Cliente no encontrado
