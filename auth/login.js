@@ -1,14 +1,15 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { pool } = require("../db/dataBase");
 
 const inicioDeSesion= async (req, res) => {
-    const { username, password } = req.body;
+    const { rut, password } = req.body;
 
     try {
         // Buscar el usuario en la base de datos
         const result = await pool.query(
-            "SELECT * FROM users WHERE username = $1",
-            [username]
+            "SELECT * FROM users WHERE rut = $1",
+            [rut]
         );
 
         const user = result.rows[0];
@@ -29,7 +30,11 @@ const inicioDeSesion= async (req, res) => {
             expiresIn: "1h",
         });
 
-        res.json({ token });
+        
+        res.json({
+            token,
+            message: "Sesión iniciada correctamente",
+          });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error al iniciar sesión" });

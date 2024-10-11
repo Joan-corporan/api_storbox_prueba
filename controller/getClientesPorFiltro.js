@@ -1,6 +1,8 @@
 const { pool } = require("../db/dataBase");
 
 const getClientePorFiltro = async (req, res) => {
+  /* const authHeader = req.headers['authorization']; */
+
   try {
     const {
       id_sucursal,
