@@ -3,7 +3,13 @@ const bcrypt = require("bcryptjs");
 const { pool } = require("../db/dataBase");
 
 const registrarse = async (req, res) => {
-  const { rut, password } = req.body;
+  const { rut, password,name } = req.body;
+
+  const userExists = await pool.query("SELECT * FROM users WHERE rut = $1", [rut]);
+  
+  if (userExists.rows.length > 0) {
+    return res.status(409).json({ message: "El Rut ya existe!" }); 
+  }
 
   try {
     // Encriptar la contraseña
@@ -11,8 +17,8 @@ const registrarse = async (req, res) => {
 
     // Guardar el usuario en la base de datos
     await pool.query(
-      "INSERT INTO users (rut, password) VALUES ($1, $2)",
-      [rut, hashedPassword]
+      "INSERT INTO users (rut, password, nombre) VALUES ($1, $2, $3)",
+      [rut, hashedPassword, name]
     );
 
     

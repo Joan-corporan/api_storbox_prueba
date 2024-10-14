@@ -27,7 +27,7 @@ const inicioDeSesion= async (req, res) => {
 
         // Generar un token JWT
         const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
-            expiresIn: "1h",
+            expiresIn: "7h",
         });
 
         
