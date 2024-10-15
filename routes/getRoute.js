@@ -10,7 +10,7 @@ const getListaDeUsers = require('../controller/getListaDeUsers');
 const deleteUserOfList = require('../controller/deleteUserOfList');
 
 const router =Router()
-/* router.get("/getAll",getCliente) */
+
 router.get("/filtro",getClientePorFiltro)
 router.get("/getUserList",getListaDeUsers)
 router.put("/:rut_cliente",updateClient)
@@ -19,9 +19,6 @@ router.delete("/:rut_cliente",deleteCliente)
 router.delete("/usuarios/:rut",deleteUserOfList)
 
 
-// Ruta de registro y inicio de sesion
 
-/* router.post("/api/registrarse",resgistrarse)
-router.post("/api/login",inicioDeSesion) */
 
 module.exports = router

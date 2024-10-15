@@ -34,6 +34,11 @@ const inicioDeSesion= async (req, res) => {
         res.json({
             token,
             message: "Sesión iniciada correctamente",
+            user: {
+                nombre: user.nombre,
+                rut:user.rut  
+                
+              }
           });
     } catch (error) {
         console.error(error);
