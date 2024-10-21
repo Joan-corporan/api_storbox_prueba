@@ -2,9 +2,11 @@ const {pool}= require("../db/dataBase")
 
 
 const getListaDeUsers=async(req,res)=>{
-   
+   const {rut}=req.query
     try {
-        const response = await pool.query("SELECT nombre, rut, created_at FROM users")
+        const response = await pool.query("SELECT nombre, rut, created_at  FROM users WHERE rut != $1",[rut])
+            
+           
 
         const usuario=response.rows
         res.status(200).json(usuario)

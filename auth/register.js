@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken"); // Asegúrate de tener este módulo importado
+/* const jwt = require("jsonwebtoken"); // Asegúrate de tener este módulo importado */
 const bcrypt = require("bcryptjs");
 const { pool } = require("../db/dataBase");
 
