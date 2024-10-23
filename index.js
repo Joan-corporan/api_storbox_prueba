@@ -15,8 +15,8 @@ const createClient = require("./controller/postClient")
 dbConnection()
 const swaggerDocument = YAML.load('./api/openApi.yaml')
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use(cors())
 app.use(express.json());
+app.use(cors())
 app.use(express.static("public"));
 app.use("/api/clients/api/login", login); 
 app.use("/api/clients/api/registrarse",verifyToken, registrarse); 
