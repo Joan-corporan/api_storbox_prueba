@@ -14,7 +14,7 @@ const createClient = require("./controller/postClient");
 
 app.use(express.json());
 const corsOptions = {
-    origin: ['http://localhost:5173',process.env.URL_FRONTEND], // Cambia esto si despliegas el frontend en otro dominio
+    origin: ['http://localhost:5173',process.env.URL_FRONTENDD], 
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
