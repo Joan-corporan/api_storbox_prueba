@@ -23,7 +23,7 @@ const corsOptions = {
   app.use(cors(corsOptions));
 app.use(express.static("public"));
 app.use("/api/clients/login", login);
-app.use("/api/clients/api/registrarse",  registrarse);
+app.use("/api/clients/registrarse",  registrarse);
 /* router.post("api/update-password",updatePasswordRoute) */
 app.use("/api/clients/create",  createClient);
 
