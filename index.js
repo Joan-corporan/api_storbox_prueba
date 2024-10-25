@@ -21,7 +21,7 @@ const corsOptions = {
   };
   app.use(cors(corsOptions));
 app.use(express.static("public"));
-app.use("/api/clients/api/login", login);
+app.use("/api/clients/login", login);
 app.use("/api/clients/api/registrarse", verifyToken, registrarse);
 
 app.use("/api/clients/create", verifyToken, createClient);
