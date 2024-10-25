@@ -24,7 +24,7 @@ app.use(express.static("public"));
 app.use("/api/clients/login", login);
 app.use("/api/clients/api/registrarse", verifyToken, registrarse);
 
-app.use("/api/clients/create", verifyToken, createClient);
+app.use("/api/clients/create", createClient);
 
 app.use("/api/clients", verifyToken, clientsRoutes);
 app.listen(port, () => {
