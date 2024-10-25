@@ -8,7 +8,7 @@ const deleteUserOfList = require('../controller/deleteUserOfList');
 const getCliente = require('../controller/getCliente');
 
 
-const router =Router()
+const router =Router()<
 
 router.get("/filtro",getClientePorFiltro)
 router.get("/getUserList",getListaDeUsers)
