@@ -11,20 +11,18 @@ const login = require("./auth/login");
 const registrarse = require("./auth/register");
 const createClient = require("./controller/postClient");
 
-dbConn;
-app.use(express.json());
-// Define las opciones de CORS
-const corsOptions = {
-  origin: "http://localhost:5173", // Permitir solicitudes desde tu frontend local
-  methods: ["GET", "POST", "PUT", "DELETE"], // Métodos HTTP permitidos
-  allowedHeaders: ["Content-Type", "Authorization"], // Cabeceras permitidas
-  credentials: true, // Si usas cookies o tokens
-};
 
-app.use(cors(corsOptions));
+app.use(express.json());
+const corsOptions = {
+    origin: 'http://localhost:5173', // Cambia esto si despliegas el frontend en otro dominio
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+  };
+  app.use(cors(corsOptions));
 app.use(express.static("public"));
-app.use("/api/clients/login", login);
-app.use("/api/clients/registrarse", verifyToken, registrarse);
+app.use("/api/clients/api/login", login);
+app.use("/api/clients/api/registrarse", verifyToken, registrarse);
 
 app.use("/api/clients/create", verifyToken, createClient);
 
