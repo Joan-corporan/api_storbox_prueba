@@ -22,11 +22,11 @@ const corsOptions = {
   app.use(cors(corsOptions));
 app.use(express.static("public"));
 app.use("/api/clients/login", login);
-app.use("/api/clients/api/registrarse",  registrarse);
+app.use("/api/clients/api/registrarse", verifyToken, registrarse);
 
-app.use("/api/clients/create", createClient);
+app.use("/api/clients/create", verifyToken, createClient);
 
-app.use("/api/clients",  clientsRoutes);
+app.use("/api/clients", verifyToken, clientsRoutes);
 app.listen(port, () => {
   console.log(`Server escuchando en el ${port}`);
 });
