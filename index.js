@@ -10,6 +10,7 @@ const verifyToken = require("./auth/vericarToken");
 const login = require("./auth/login");
 const registrarse = require("./auth/register");
 const createClient = require("./controller/postClient");
+const updatePasswordRoute = require("./auth/updatePasswordRoute");
 
 
 app.use(express.json());
@@ -23,7 +24,7 @@ const corsOptions = {
 app.use(express.static("public"));
 app.use("/api/clients/login", login);
 app.use("/api/clients/api/registrarse", verifyToken, registrarse);
-
+router.post("update-password",updatePasswordRoute)
 app.use("/api/clients/create", verifyToken, createClient);
 
 app.use("/api/clients", verifyToken, clientsRoutes);
