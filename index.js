@@ -10,8 +10,8 @@ const verifyToken = require("./auth/vericarToken");
 const login = require("./auth/login");
 const registrarse = require("./auth/register");
 const createClient = require("./controller/postClient");
-const updatePasswordRoute = require("./auth/updatePasswordRoute");
-
+/* const updatePasswordRoute = require("./auth/updatePasswordRoute");
+ */
 
 app.use(express.json());
 const corsOptions = {
@@ -23,11 +23,11 @@ const corsOptions = {
   app.use(cors(corsOptions));
 app.use(express.static("public"));
 app.use("/api/clients/login", login);
-app.use("/api/clients/api/registrarse", verifyToken, registrarse);
-router.post("update-password",updatePasswordRoute)
-app.use("/api/clients/create", verifyToken, createClient);
+app.use("/api/clients/api/registrarse",  registrarse);
+/* router.post("api/update-password",updatePasswordRoute) */
+app.use("/api/clients/create",  createClient);
 
-app.use("/api/clients", verifyToken, clientsRoutes);
+app.use("/api/clients",  clientsRoutes);
 app.listen(port, () => {
   console.log(`Server escuchando en el ${port}`);
 });
