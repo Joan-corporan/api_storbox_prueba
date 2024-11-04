@@ -8,8 +8,7 @@ const clientsRoutes = require("./routes/getRoute");
 const { dbConnection } = require("./db/dataBase");
 const verifyToken = require("./auth/vericarToken");
 const login = require("./auth/login");
-const registrarse = require("./auth/register");
-const createClient = require("./controller/postClient");
+
 
 
 app.use(express.json());
@@ -22,8 +21,7 @@ const corsOptions = {
   app.use(cors(corsOptions));
 app.use(express.static("public"));
 app.use("/api/clients/login", login);
-app.use("/api/clients/registrarse", verifyToken, registrarse);
-app.use("/api/clients/create", verifyToken, createClient);
+
 
 app.use("/api/clients", verifyToken, clientsRoutes);
 app.listen(port, () => {
