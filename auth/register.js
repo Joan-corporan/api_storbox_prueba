@@ -3,7 +3,7 @@ const { pool } = require("../db/dataBase");
 
 const registrarse = async (req, res) => {
   const { rut, password,name } = req.body;
-
+  console.log("Datos recibidos:", req.body);
   const userExists = await pool.query("SELECT * FROM users WHERE rut = $1", [rut]);
   
   if (userExists.rows.length > 0) {
