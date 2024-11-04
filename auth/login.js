@@ -24,9 +24,10 @@ const inicioDeSesion= async (req, res) => {
         if (!isMatch) {
             return res.status(400).json({ message: "Contraseña incorrecta" });
         }
+        console.log("Valor de admin del usuario:", user.admin);
 
         // Generar un token JWT
-        const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+        const token = jwt.sign({ userId: user.id, admin: user.admin }, process.env.JWT_SECRET, {
             expiresIn: "7h",
         });
 
@@ -36,7 +37,8 @@ const inicioDeSesion= async (req, res) => {
             message: "Sesión iniciada correctamente",
             user: {
                 nombre: user.nombre,
-                rut:user.rut  
+                rut:user.rut,
+                admin: user.admin
                 
               }
           });
