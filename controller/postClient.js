@@ -8,6 +8,7 @@ const createClient = async (req, res) => {
       nombre_cliente,
       email_cliente,
       telefono_cliente,
+      genero
     } = req.body;
     const fecha_registro = new Date();
 
@@ -22,7 +23,7 @@ const createClient = async (req, res) => {
     
    
     const nuevoRegistro = await pool.query(
-      "INSERT INTO CLIENTES (id_sucursal, rut_cliente, nombre_cliente, email_cliente, telefono_cliente, fecha_registro) VALUES ($1,$2,$3,$4,$5,$6)",
+      "INSERT INTO CLIENTES (id_sucursal, rut_cliente, nombre_cliente, email_cliente, telefono_cliente, fecha_registro, genero) VALUES ($1,$2,$3,$4,$5,$6,$7)",
       [
         id_sucursal,
         rut_cliente,
@@ -30,6 +31,7 @@ const createClient = async (req, res) => {
         email_cliente,
         telefono_cliente,
         fecha_registro,
+        genero
       ]
     );
     
