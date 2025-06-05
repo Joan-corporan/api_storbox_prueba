@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const {pool}= require("../db/dataBase")
+
 
 const checkAdmin=async(req,res, next)=>{
 try {
